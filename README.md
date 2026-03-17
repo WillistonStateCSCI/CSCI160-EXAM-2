@@ -165,7 +165,7 @@ F
 ```
 ### Q3 Test 4 - New Students Added
 **Compile Code:** javac Q3/*.java  
-**Run Code:** java -cp Q3 LetterGrades 90 84 73 62 50 68 78 88 98
+**Run Code:** java -cp Q3 LetterGrades 90 84 73 62 50 68 78 88 98  
 **Input:**  
 *none*  
 **Output:**  
