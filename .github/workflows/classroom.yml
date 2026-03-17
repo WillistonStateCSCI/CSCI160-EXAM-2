@@ -1,0 +1,89 @@
+name: Autograding Tests
+'on':
+- push
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Q1 Test 1
+      id: q1-test-1
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Q1 Test 1
+        setup-command: javac Q1/*.java
+        command: java -cp Q1 TeamClient
+        input: ''
+        expected-output: 'The name of team #1 is Baltimore Orioles'
+        comparison-method: contains
+        timeout: 10
+        max-score: 2
+    - name: Q1 Test 2
+      id: q1-test-2
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Q1 Test 2
+        setup-command: javac Q1/*.java
+        command: java -cp Q1 TeamClient
+        input: ''
+        expected-output: 'Team #2: New York Yankees'
+        comparison-method: contains
+        timeout: 10
+        max-score: 2
+    - name: Q1 Test 3
+      id: q1-test-3
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Q1 Test 3
+        setup-command: javac Q1/*.java
+        command: java -cp Q1 TeamClient
+        input: ''
+        expected-output: |-
+          Setting team #2 name to Orioles.
+          Team #1: Baltimore Orioles
+          New Team #2: New York Orioles
+          Original team #1 and modified team #2 are different.
+        comparison-method: contains
+        timeout: 10
+        max-score: 2
+    - name: Q1 Test 4
+      id: q1-test-4
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Q1 Test 4
+        setup-command: javac Q1/*.java
+        command: java -cp Q1 TeamClient
+        input: ''
+        expected-output: |-
+          The name of team #1 is Baltimore Orioles
+          Team #2: New York Yankees
+          Original teams #1 and #2 are different.
+
+          Setting team #2 name to Orioles.
+          Team #1: Baltimore Orioles
+          New Team #2: New York Orioles
+          Original team #1 and modified team #2 are different.
+
+          Setting team #2 hometown to Baltimore.
+          Team #1: Baltimore Orioles
+          New Team #2: Baltimore Orioles
+          Original team #1 and modified team #2 are identical.
+        comparison-method: contains
+        timeout: 10
+        max-score: 2
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        Q1-TEST-1_RESULTS: "${{steps.q1-test-1.outputs.result}}"
+        Q1-TEST-2_RESULTS: "${{steps.q1-test-2.outputs.result}}"
+        Q1-TEST-3_RESULTS: "${{steps.q1-test-3.outputs.result}}"
+        Q1-TEST-4_RESULTS: "${{steps.q1-test-4.outputs.result}}"
+      with:
+        runners: q1-test-1,q1-test-2,q1-test-3,q1-test-4
