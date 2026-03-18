@@ -1,5 +1,5 @@
-# CSCI160-EXAM2-DB
-GitHub Question Database for Exam 1
+# CSCI160-EXAM2
+Exam 2 Questions for CSCI 160
 ## Q1 Instructions - Team Object  
 Write a class encapsulating the concept of a team.  For example, the Baltimore Orioles.  The team has two attributes, the team name and the team hometown.  Include a constructor, the accessor and mutator and the methods `toString` and `equals`.  A client class `TeamClient.java` is provided to test your code.  All of your work for this problem should be done in `Team.java`.  Do not make **ANY** changes to `TeamClient.java`  You can use the Run and Debug button to test your code.  
 **Note:** The full expected output is provided and checked for Test 4.  Tests 1-3 serve as your checkpoints to look for individual pieces of correct code.
