@@ -211,7 +211,7 @@ jobs:
           Minimum players: 2; Maximum players: 2; Is time limited: true
           Board Game 2:
           Description: Monopoly
-          Minimum players: 2; Maximum players: 6; Is time limited: false Board Game 3:
+          Minimum players: 2; Maximum players: 6; Is time limited: false
         comparison-method: contains
         timeout: 10
         max-score: 2
